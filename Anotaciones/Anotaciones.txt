@@ -24,3 +24,30 @@
         )
 
 * Para eliminar, crear y actualizar un arreglo, esto no sera un CRUD tan especifico 
+
+DELETE PRODUCT:
+
+                function ShoppingCart() {
+                    const [cart, setCart] = useState(initialCart);
+
+                    const deleteProduct = (productId) => {
+
+                        const changedCart = cart.filter(product => product.id !== productId);
+
+                        setCart(changedCart);
+                    }
+
+                return (
+                    <div>
+                        {cart.map(product => (
+                            <div key={product.id}>
+                                <h1>{product.id} {product.title}</h1>
+                                <p>{product.description}</p>
+                                <button onClick={() => deleteProduct(product.id)}>
+                                    Delete
+                                </button>
+                            </div>
+                        ))}
+
+
+AGREGAR PRODUCTO:

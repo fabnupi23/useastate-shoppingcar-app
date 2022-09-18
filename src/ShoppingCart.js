@@ -9,6 +9,18 @@ const initialCart = [
 function ShoppingCart() {
     const [cart, setCart] = useState(initialCart);
 
+    const addProduct = (newProduct) => {
+
+        newProduct.id = Date.now();
+
+        const changedCart = [
+            newProduct,
+            ...cart,            
+        ];
+
+        setCart(changedCart);
+    }
+
     const deleteProduct = (productId) => {
 
         const changedCart = cart.filter(product => product.id !== productId);
@@ -27,8 +39,9 @@ function ShoppingCart() {
                 </button>
             </div>
         ))}
-
-        
+        <button onClick={() => addProduct({title: "Nuevo título", description: "Nueva Desc"})}> {/*vamos a pasar un objeto que va a representar el producto*/}
+            Agregar
+        </button>        
     </div>
   )
 }
