@@ -21,6 +21,18 @@ function ShoppingCart() {
         setCart(changedCart);
     }
 
+
+    const updateProduct = (editProduct) => {
+        const changedCart = cart.map(product => (
+            product.id === editProduct.id
+            ? editProduct
+            : product
+        ))
+        setCart(changedCart);
+    }
+
+
+
     const deleteProduct = (productId) => {
 
         const changedCart = cart.filter(product => product.id !== productId);
@@ -37,11 +49,21 @@ function ShoppingCart() {
                 <button onClick={() => deleteProduct(product.id)}>
                     Delete
                 </button>
+                <button onClick={() => updateProduct({id: product.id, title: "Edit título", description: "Edit Desc"})}> {/*vamos a pasar un objeto que va a representar el producto*/}
+                    Actualizar
+                </button>  
             </div>
         ))}
         <button onClick={() => addProduct({title: "Nuevo título", description: "Nueva Desc"})}> {/*vamos a pasar un objeto que va a representar el producto*/}
             Agregar
-        </button>        
+        </button>      
+        <br/>
+        <br/>
+        <pre>
+            {/*Imprimir un arreglo en pantalla*/}
+            {JSON.stringify(cart, null, 2)}
+        </pre>
+        
     </div>
   )
 }
